@@ -65,8 +65,14 @@ function material() {
         return "topological insulator";
     } else if (r < 0.6) {
         return "antimatter";
+    } else if (r < 0.65) {
+        return "superstrings";
     } else if (r < 0.7) {
         return "ether";
+    } else if (r < 0.8) {
+        return "dark matter";
+    } else if (r < 0.5) {
+        return "dark energy";
     } else if (r < 0.9) {
         return "Hawking radiation";
     } else {
@@ -104,6 +110,8 @@ function scientific_sounding_adjective() {
         return "supersymmetric";
     } else if (r < 0.8) {
         return "massless";
+    } else if (r < 0.9) {
+        return "oscillating";
     } else {
         return "spin-"+Math.floor(5*Math.random());
     };
@@ -111,8 +119,10 @@ function scientific_sounding_adjective() {
 
 function particle() {
     r = Math.random();
-    if (r < 0.2) {
+    if (r < 0.1) {
         return "photon";
+    } else if (r < 0.2) {
+        return "superstring";
     } else if (r < 0.3) {
         return "electron";
     } else if (r < 0.5) {
@@ -143,7 +153,7 @@ function physical_constant() {
     } else if (r < 0.8) {
         return "the gravitational constant";
     } else if (r < 0.9) {
-        return "planck's constant";
+        return "Planck's constant";
     } else {
         return "e"
     }
