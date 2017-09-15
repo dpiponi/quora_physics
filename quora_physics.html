@@ -1,0 +1,548 @@
+
+<HEAD>
+<title>Quora physics questions for all</title>
+</HEAD>
+
+<BODY>
+<!--
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to <http://unlicense.org/>
+-->
+<div style="font-size: 200%;" id="textDiv"></div>
+<script type="text/javascript">
+function material_property() {
+    var r = Math.random();
+    if (r < 0.2) {
+        return "infinitely rigid";
+    } else if (r < 0.3) {
+        return "completely black";
+    } else if (r < 0.4) {
+        return "perfectly conducting";
+    } else if (r < 0.5) {
+        return "perfectly insulating";
+    } else if (r < 0.6) {
+        return "perfectly reflecting";
+    } else if (r < 0.7) {
+        return "infinitely massive";
+    } else if (r < 0.8) {
+        return "infinitely long";
+    } else {
+        return "infinitely dense";
+    }
+}
+
+function material() {
+    var r = Math.random();
+    if (r < 0.2) {
+        return "neutronium";
+    } else if (r < 0.3) {
+        return "ping pong balls";
+    } else if (r < 0.4) {
+        return "Bose-Einstein condensate";
+    } else if (r < 0.5) {
+        return "topological insulator";
+    } else if (r < 0.6) {
+        return "antimatter";
+    } else if (r < 0.7) {
+        return "ether";
+    } else if (r < 0.9) {
+        return "Hawking radiation";
+    } else {
+        return "energy";
+    }
+}
+
+function qualified_by_material(mat) {
+    if (Math.random() < 0.2) {
+        return material_property() + " and " + material_property() + mat;
+    } else if (Math.random() < 0.6) {
+        return material_property() + " " + mat;
+    } else {
+        return mat;
+    }
+}
+
+function determined(noun) {
+    if ("aeiou".indexOf(noun.charAt(0)) === -1) {
+        return "a " + noun;
+    } else {
+        return "an " + noun;
+    }
+}
+
+function scientific_sounding_adjective() {
+    r = Math.random();
+    if (r < 0.1) {
+        return "bosonic";
+    } else if (r < 0.2) {
+        return "fermionic";
+    } else if (r < 0.3) {
+        return "virtual";
+    } else if (r < 0.4) {
+        return "supersymmetric";
+    } else if (r < 0.8) {
+        return "massless";
+    } else {
+        return "spin-"+Math.floor(5*Math.random());
+    };
+}
+
+function particle() {
+    r = Math.random();
+    if (r < 0.2) {
+        return "photon";
+    } else if (r < 0.3) {
+        return "electron";
+    } else if (r < 0.5) {
+        return "graviton";
+    } else if (r < 0.6) {
+        return "proton"
+    } else if (r < 0.7) {
+        return "tachyon"
+    } else if (r < 0.8) {
+        return "neutrino"
+    } else if (r < 0.9) {
+        return "quark"
+    } else {
+        return scientific_sounding_adjective() + " " + particle();
+    }
+}
+
+function physical_constant() {
+    var r = Math.random();
+    if (r < 0.2) {
+        return "the speed of light";
+    } else if (r < 0.3) {
+        return "pi";
+    } else if (r < 0.5) {
+        return "the mass of " + determined(particle());
+    } else if (r < 0.7) {
+        return "the speed of " + determined(particle());
+    } else if (r < 0.8) {
+        return "the gravitational constant";
+    } else if (r < 0.9) {
+        return "planck's constant";
+    } else {
+        return "e"
+    }
+}
+
+function speed() {
+    var r = Math.random();
+    if (r < 0.3) {
+        return "the speed of light";
+    } else {
+        return "the speed of sound";
+    }
+}
+
+function speed_phrase() {
+    var r = Math.random();
+    if (r < 0.2) {
+        return "at " + speed();
+    } else if (r < 0.4) {
+        return "at half " + speed();
+    } else if (r < 0.6) {
+        return "at rest";
+    } else {
+        return "faster than " + speed();
+    }
+}
+
+function journey() {
+    var txt = "";
+    var r = Math.random();
+    if (r < 0.2) {
+        txt = "to the moon and back";
+    } else if (r < 0.3) {
+        txt = "to the nearest star";
+    } else if (r < 0.5) {
+        txt = "around the earth";
+    } else if (r < 0.6) {
+        txt = "around a closed loop";
+    } else if (r < 0.7) {
+        txt = "through an event horizon";
+    } else if (r < 0.8) {
+        txt = "through a singularity";
+    } else {
+        txt = "to a different universe";
+    }
+    if (Math.random() < 0.2) {
+        txt = txt + " and back";
+    }
+    return txt;
+}
+
+function pi_candidate() {
+    var r = Math.random();
+    if (r < 0.3) {
+        return "3";
+    } else if (r < 0.7) {
+        return "exactly 3.14";
+    } else {
+        return "22/7";
+    }
+}
+
+function force() {
+    var r = Math.random();
+    if (r < 0.2) {
+        return "gravity";
+    } else if (r < 0.4) {
+        return "electricity";
+    } else if (r < 0.6) {
+        return "chemical bonds";
+    } else {
+        return "magnetism";
+    }
+}
+
+function condition_atom() {
+    var r = Math.random();
+    if (r < 0.1) {
+        return "pi equalled " + pi_candidate();
+    } else if (r < 0.15) {
+        return obj() + " was entangled with " + obj();
+    } else if (r < 0.2) {
+        return "nothing existed";
+    } else if (r < 0.23) {
+        return "you stopped time";
+    } else if (r < 0.27) {
+        return "you killed your grandfather";
+    } else if (r < 0.3) {
+        return "nobody was observing";
+    } else if (r < 0.35) {
+        return "you threw " + obj() + " at the sun";
+    } else if (r < 0.4) {
+        return physical_constant() + " doubled";
+    } else if (r < 0.5) {
+        return "the Earth stopped spinning";
+    } else if (r < 0.6) {
+        return "all " + force() + " stopped";
+    } else if (r < 0.7) {
+        return "you had a twin";
+    } else if (r < 0.8) {
+        return "you were on " + determined(qualified_by_material("disk")) + " made of " + qualified_by_material(material()) + " spinning " + speed_phrase()
+    } else {
+        return "you travelled " + journey() + " " + speed_phrase();
+    }
+}
+function condition() {
+    if (Math.random() < 0.3) {
+        return condition_atom() + " and " + condition();
+    } else {
+        return condition_atom();
+    }
+}
+
+function change() {
+    var r = Math.random();
+    if (r < 0.25) {
+        return "increase";
+    } else if (r < 0.5) {
+        return "remain the same";
+    } else if (r < 0.6) {
+        return "remain exactly the same";
+    } else {
+        return "decrease";
+    }
+}
+
+function element() {
+    r = Math.random();
+    if (r < 0.3) {
+        return "liquid helium";
+    } else if (r < 0.6) {
+        return "plutonium";
+    } else {
+        return "uranium";
+    }
+}
+
+function obj() {
+    r = Math.random();
+    if (r < 0.3) {
+        return determined(particle());
+    } else if (r < 0.4) {
+        return "a black hole";
+    } else if (r < 0.6) {
+        return "your twin";
+    } else if (r < 0.7) {
+        return "a singularity";
+    } else if (r < 0.8) {
+        return physicist();
+    } else if (r < 0.9) {
+        return "a " + shape() + " of " + element();
+    } else {
+        return determined(particle());
+    }
+}
+
+function theorem() {
+    r = Math.random();
+    if (r < 0.2) {
+        return "Fermat's last theorem";
+    } else if (r < 0.3) {
+        return "the Goldbach conjecture";
+    } else if (r < 0.4) {
+        return "relativity";
+    } else if (r < 0.45) {
+        return "consistency of arithmetic";
+    } else if (r < 0.5) {
+        return "the Riemann hypothesis";
+    } else if (r < 0.6) {
+        return "the existence of life after death";
+    } else if (r < 0.7) {
+        return "the Poincare conjecture";
+    } else if (r < 0.8) {
+        return "1+1=2";
+    } else if (r < 0.9) {
+        return "the continuum hypothesis";
+    } else if (r < 0.95) {
+        return "the existence of other universes";
+    } else {
+        return "the existence of infinity";
+    }
+}
+
+function goal() {
+    r = Math.random();
+    if (r < 0.1) {
+        return "communicate instantaneously";
+    } else if (r < 0.15) {
+        return "reverse gravity";
+    } else if (r < 0.2) {
+        return "cool things below absolute zero";
+    } else if (r < 0.3) {
+        return "travel back in time";
+    } else if (r < 0.35) {
+        return "send messages back in time";
+    } else if (r < 0.4) {
+        return "create " + particle() + "s";
+    } else if (r < 0.45) {
+        return "decrease entropy";
+    } else if (r < 0.5) {
+        return "reverse time";
+    } else if (r < 0.6) {
+        return "prove " + theorem();
+    } else if (r < 0.7) {
+        return "disprove " + theorem();
+    } else if (r < 0.8) {
+        return "stop time";
+    } else if (r < 0.9) {
+        return "use " + phenomenon() + " to " + goal();
+    } else {
+        return "go " + journey();
+    }
+}
+
+function phenomenon() {
+    r = Math.random();
+    if (r < 0.25) {
+        return "entanglement";
+    } else if (r < 0.4) {
+        return "interference";
+    } else if (r < 0.5) {
+        return "superconductivity";
+    } else if (r < 0.6) {
+        return "supersymmetry";
+    } else if (r < 0.7) {
+        return "quantum mechanics";
+    } else if (r < 0.8) {
+        return "Lorentz-Fitzgerald contraction";
+    } else if (r < 0.9) {
+        return "String Theory";
+    } else {
+        return "time dilation";
+    }
+}
+
+function physicist() {
+    r = Math.random();
+    if (r < 0.25) {
+        return "Einstein";
+    } else if (r < 0.4) {
+        return "Feynman";
+    } else if (r < 0.5) {
+        return "Neil deGrasse Tyson";
+    } else if (r < 0.6) {
+        return "Michio Kaku";
+    } else if (r < 0.7) {
+        return "Witten";
+    } else if (r < 0.9) {
+        return "Gödel";
+    } else {
+        return "Hawking";
+    }
+}
+
+function prison() {
+    r = Math.random();
+    if (r < 0.25) {
+        return "black hole";
+    } else if (r < 0.4) {
+        return "gravitational field";
+    } else if (r < 0.6) {
+        return "electromagnetic field";
+    } else {
+        return "singularity";
+    }
+}
+
+function scientific_sounding_adverbial_phrase() {
+    var r = Math.random();
+    if (r < 0.2) {
+        return "in a different universe";
+    } else if (r < 0.25) {
+        return "at absolute zero";
+    } else if (r < 0.3) {
+        return "exponentially";
+    } else if (r < 0.35) {
+        return "inside a particle accelerator";
+    } else if (r < 0.4) {
+        return "at the speed of light";
+    } else if (r < 0.45) {
+        return "in a completely sealed room";
+    } else if (r < 0.5) {
+        return "scientifically";
+    } else if (r < 0.55) {
+        return "mathematically";
+    } else if (r < 0.6) {
+        return "with a mirror";
+    } else if (r < 0.65) {
+        return "with a laser";
+    } else if (r < 0.7) {
+        return "before the big bang";
+    } else if (r < 0.75) {
+        return "near an event horizon";
+    } else if (r < 0.8) {
+        return "in binary";
+    } else if (r < 0.85) {
+        return "right after the Big Bang";
+    } else if (r < 0.9) {
+        return "at the centre of the sun";
+    } else if (r < 0.95) {
+        return "in " + determined(qualified_by_material(shape() + " of glass"))
+    } else {
+        return "semantically";
+    }
+}
+
+function shape() {
+    var r = Math.random(0);
+    if (r < 0.2) {
+        return "cube";
+    } else if (r < 0.4) {
+        return "disk";
+    } else if (r < 0.7) {
+        return "sphere";
+    } else {
+        return "sheet";
+    }
+}
+
+function random_quoran_style(txt) {
+    var r = Math.random(0);
+    if (r < 0.1) {
+        return txt.toUpperCase();
+    } else if (r < 0.2) {
+        return txt.toLowerCase();
+    } else {
+        return txt;
+    }
+}
+
+function question() {
+    var intr;
+    if (Math.random() < 0.1) {
+        return "what would happen";
+    }
+
+    var r = Math.random();
+    if (r < 0.2) {
+        intr = "would";
+    } else if (r < 0.5) {
+        intr = "could";
+    } else if (r < 0.7) {
+        intr = "why would";
+    } else {
+        intr = "why wouldn't";
+    }
+
+    var txt;
+    r = Math.random();
+    if (r < 0.1) {
+        txt =  "your mass " + change();
+    } else if (r < 0.2) {
+        txt =  physical_constant() + " " + change();
+    } else if (r < 0.3) {
+        txt =  "you be able to see " + obj();
+    } else if (r < 0.4) {
+        txt =  "you be able to see yourself";
+    } else if (r < 0.5) {
+        txt =  "you be able to detect " + obj();
+    } else if (r < 0.6) {
+        txt =  "you be able to " + goal();
+    } else if (r < 0.8) {
+        txt =  "the universe collapse";
+    } else if (r < 0.9) {
+        txt = obj() + " implode";
+    } else if (r < 0.95) {
+        txt = obj() + " explode";
+    } else {
+        txt =  particle() + "s be able to escape from " + determined(prison());
+    }
+
+    return intr + " " + txt;
+}
+
+var n = 1;
+var div = document.getElementById("textDiv");
+full = ""
+
+for (i = 0; i < n; ++i) {
+    var text = "";
+    var r = Math.random();
+    text = "If " + condition() + " " + question();
+    if (Math.random() < 0.2) {
+        text = text + " " + scientific_sounding_adverbial_phrase();
+    }
+    text = text + "?"
+    if (Math.random() < 0.25) {
+        text = text + " What if " + condition() + "?";
+        if (Math.random() < 0.25) {
+            text = text + " Or if " + condition() + "?";
+        }
+    }
+    if (Math.random() < 0.1) {
+        text = text + " What would " + physicist() + " say?";
+    }
+    text = random_quoran_style(text);
+
+    full += text+"\n"
+}
+div.textContent = full;
+</script>
+</BODY>
